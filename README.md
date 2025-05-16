@@ -1,3 +1,34 @@
+# 🤖 Fine-tuning Qwen2-0.5B with GRPO on TRL
+
+This repo is a fork of [Hugging Face's TRL](https://github.com/huggingface/trl), where I experiment with **GRPO (Group Relative Policy Optimization)** for fine-tuning the [`Qwen2-0.5B-Instruct`](https://huggingface.co/Qwen/Qwen2-0.5B-Instruct) model.
+
+## 🔧 Fine-tuning Objective
+
+The goal of this project is to apply GRPO (a reinforcement learning method) to align the base language model's output with preferred behaviors. The fine-tuned model is expected to generate more helpful, relevant, and coherent responses.
+
+## 📊 ROUGE Evaluation
+
+| Model               | ROUGE-1 | ROUGE-2 | ROUGE-L |
+|---------------------|---------|---------|---------|
+| Qwen2-0.5B (base)    | 0.1243  | 0.0471  | 0.0890  |
+| Fine-tuned (GRPO)   | 0.1448  | 0.0549  | 0.1034  |
+
+> + ROUGE scores were computed using a 100-sample benchmark set.
+> + The fine-tuned model shows consistent improvements across all ROUGE metrics.
+
+## 🏗️ How It Works
+
+1. **Base Model**: [`Qwen/Qwen2-0.5B-Instruct`](https://huggingface.co/Qwen/Qwen2-0.5B-Instruct)
+2. **Fine-tuning Algorithm**: GRPO (Group Relative Policy Optimization)
+3. **Framework**: Modified [TRL](https://github.com/huggingface/trl)
+4. **Backbone Inference**: Integrated with [`SGLang`](https://github.com/InternLM/sglang) as the serving engine
+
+## 🧪 Scripts
+
+- `benchmark_rouge.py`: Runs evaluation on the base and fine-tuned models using ROUGE.
+- `grpo_train.py`: Trains the model using GRPO with SGLang backend.
+
+
 # TRL - Transformer Reinforcement Learning
 
 <div style="text-align: center">
